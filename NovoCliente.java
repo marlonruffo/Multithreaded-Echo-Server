@@ -19,7 +19,7 @@ class NovoCliente extends Thread {
 		String msgrecebida;
 		while (true) {
 			try {
-				out_out.writeUTF("Mande uma mensagem para o Servidor");
+				out_out.writeUTF("Mande uma mensagem para o Servidor:");
 				msgrecebida = in_in.readUTF();
                 /*se msg=quit */
 				if (msgrecebida.equals("quit")) {
@@ -28,7 +28,7 @@ class NovoCliente extends Thread {
 					break;
 				}
 				out_out.writeUTF(msgrecebida);
-				System.out.println("Resposta do cliente: " + msgrecebida);
+				System.out.println("Mensagem do cliente: " + msgrecebida);
 			} catch (Exception erro) {
 				System.out.println(erro);
 			}

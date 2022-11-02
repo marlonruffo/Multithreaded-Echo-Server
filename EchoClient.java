@@ -10,7 +10,9 @@ public class EchoClient {
 			try {
 				Scanner sc = new Scanner(System.in);
 				InetAddress endereco = InetAddress.getByName("localhost");
-				Socket s = new Socket(endereco,4444);	
+				int port = 4444;
+				Socket s = new Socket(endereco, port);	
+				System.out.println("Conectado por: "+endereco +" na porta: " +port );
 				DataInputStream in_in= new DataInputStream(s.getInputStream());
 				DataOutputStream out_out = new DataOutputStream(s.getOutputStream());
 				
