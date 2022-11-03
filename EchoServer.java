@@ -13,14 +13,12 @@ public class EchoServer {
             Socket socket = null;
             try{
             socket = server.accept();
-            System.out.println("Conexão aceita pelo cliente");
+            System.out.println("Conexão aceita por um cliente");
             DataInputStream in_in = new DataInputStream(socket.getInputStream());
             DataOutputStream out_out = new DataOutputStream(socket.getOutputStream());
 
-            Thread novathread = new NovoCliente(socket, in_in, out_out);
+            Thread novathread = new NovoCliente(socket, in_in, out_out, server);
             novathread.start();
-
-
 
             }catch(IOException erro){
 
