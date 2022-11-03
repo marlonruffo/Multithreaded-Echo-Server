@@ -1,14 +1,14 @@
 # **Trabalho 1 da disciplina de Redes de Computadores DCC042-2022.3**
 
-# **Servidor Multithread com protocolo simples **
+# Servidor Multithread com protocolo simples 
 
 
 
 #### Desenvolvedores / matrícula:
 
 * Marlon Ruffo Nascimento  202065165AC
-* Matheus do Nascimento Pereira da Costa 201676003
-*
+* Matheus do Nascimento Pereira da Costa  201676003
+* Deyvison Otaviano Fernandes  201976016
 
 ## Instruções:
 
