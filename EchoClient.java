@@ -17,8 +17,9 @@ public class EchoClient {
 				DataOutputStream out_out = new DataOutputStream(s.getOutputStream());
 				
 				while(true) {
-					System.out.println(in_in.readUTF());
-					String msgenviar=sc.nextLine();
+					String msgrecebida = in_in.readUTF();
+					String msgenviar=sc.nextLine();				
+
 					out_out.writeUTF(msgenviar);
 
 					/*se msg=quit */
@@ -27,8 +28,16 @@ public class EchoClient {
 						System.out.println("Conexão Encerrada");
 						break;
 					}
-					String msgrecebida = in_in.readUTF();
-					System.out.println("Servidor diz: "+ msgrecebida);
+					else if(msgenviar.startsWith("echo")) {
+						 msgrecebida = in_in.readUTF();
+						System.out.println("Servidor diz:"+ msgrecebida.replace("echo", " "));
+					}
+					else {
+						msgrecebida = in_in.readUTF();
+						System.out.println("A mensagem '"+msgrecebida+"' nao tem o protocolo necessario");
+							
+					}
+					
 				            }
 				    sc.close();
 				    in_in.close();
