@@ -6,45 +6,43 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class EchoClient {
-	public static void main(String[] args) throws IOException  {
-			try {
-				Scanner sc = new Scanner(System.in);
-				InetAddress endereco = InetAddress.getByName("localhost");
-				int port = 4444;
-				Socket s = new Socket(endereco, port);	
-				System.out.println("Conectado por: "+endereco +" na porta: " +port );
-				DataInputStream in_in= new DataInputStream(s.getInputStream());
-				DataOutputStream out_out = new DataOutputStream(s.getOutputStream());
-				
-				while(true) {
-					String msgrecebida = in_in.readUTF();
-					String msgenviar=sc.nextLine();				
+	public static void main(String[] args) throws IOException {
+		try {
+			Scanner sc = new Scanner(System.in);
+			InetAddress endereco = InetAddress.getByName("localhost");
+			int port = 4444;
+			Socket s = new Socket(endereco, port);
+			System.out.println("Conectado por: " + endereco + " na porta: " + port);
+			DataInputStream in_in = new DataInputStream(s.getInputStream());
+			DataOutputStream out_out = new DataOutputStream(s.getOutputStream());
 
-					out_out.writeUTF(msgenviar);
+			while (true) {
+				String msgrecebida = in_in.readUTF();
+				String msgenviar = sc.nextLine();
 
-					/*se msg=quit */
-					if(msgenviar.equals("quit")) {
-						s.close();
-						System.out.println("Conexão Encerrada");
-						break;
-					}
-					else if(msgenviar.startsWith("echo")) {
-						 msgrecebida = in_in.readUTF();
-						System.out.println("Servidor diz:"+ msgrecebida.replace("echo", " "));
-					}
-					else {
-						msgrecebida = in_in.readUTF();
-						System.out.println("A mensagem '"+msgrecebida+"' nao tem o protocolo necessario");
-							
-					}
-					
-				            }
-				    sc.close();
-				    in_in.close();
-				    out_out.close();
-			}catch(Exception erro) {
-				System.out.println("Erro: "+erro);
+				out_out.writeUTF(msgenviar);
+
+				/* se msg=quit */
+				if (msgenviar.equals("quit")) {
+					s.close();
+					System.out.println("Conexão Encerrada");
+					break;
+				} else if (msgenviar.startsWith("echo")) {
+					msgrecebida = in_in.readUTF();
+					System.out.println("Servidor responde:" + msgrecebida.replace("echo", " "));
+				} else {
+					msgrecebida = in_in.readUTF();
+					System.out.println("A mensagem '" + msgrecebida + "' nao tem o protocolo necessario");
+
+				}
+
 			}
-
+			sc.close();
+			in_in.close();
+			out_out.close();
+		} catch (Exception erro) {
+			System.out.println("Erro: " + erro);
 		}
+
 	}
+}
